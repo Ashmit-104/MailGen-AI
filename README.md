@@ -56,40 +56,12 @@ Generate a complete outreach sequence from a single prompt:
 
 ## Tech Stack
 
-### Frontend
-
-- React.js
-- Vite
-- Tailwind CSS
-- React Router
-- Axios
-
-### Backend
-
-- Node.js
-- Express.js
-- REST APIs
-
-### Database
-
-- MongoDB Atlas
-- Mongoose
-
-### Authentication
-
-- JWT (JSON Web Tokens)
-- bcrypt
-
-### AI Integration
-
-- Groq API
-- Llama 3.3 70B Model
-
-### Deployment
-
-- Render
-- MongoDB Atlas
-
+- Frontend: React.js, Vite, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB Atlas
+- Authentication: JWT
+- AI Integration: Groq LLM API
+- Deployment: Render
 ---
 
 ## Architecture
