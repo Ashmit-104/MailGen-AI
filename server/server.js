@@ -10,7 +10,7 @@ const aiRoutes = require('./routes/aiRoutes');
 // Load environment variables
 dotenv.config();
 
-// Validate required environment variables
+// Validate required environment variables(checks if req env vars are present or not)
 const requiredEnvVars = ['MONGODB_URI', 'JWT_SECRET', 'GROQ_API_KEY'];
 const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 
@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === 'production' && false) {
         }
     });
 }
-
+// error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Server Error', error: err.message });

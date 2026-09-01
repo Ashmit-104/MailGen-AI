@@ -11,7 +11,7 @@ const protect = async (req, res, next) => {
         if (!token) {
             return res.status(401).json({ message: 'Not authorized, no token provided' });
         }
-
+        // token verification 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id).select('-password');
         
@@ -19,7 +19,7 @@ const protect = async (req, res, next) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        next();
+        next(); // Authentication passed. Continue to the actual controller, if no next() is called, the request will not proceed to the next middleware or route handler. 
     } catch (error) {
         return res.status(401).json({ message: 'Not authorized, token failed', error: error.message });
     }

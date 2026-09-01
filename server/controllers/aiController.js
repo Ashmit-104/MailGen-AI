@@ -199,26 +199,40 @@ Return ONLY valid JSON:
 {"subject":"","emailBody":"","linkedInDM":"","followUpEmail":""}
 `;
     const aiResponse = await axios.post(
-      'https://api.groq.com/openai/v1/chat/completions',
+  'https://api.groq.com/openai/v1/chat/completions',
+  {
+    model: "openai/gpt-oss-120b",
+    messages: [
       {
-        model: "llama-3.3-70b-versatile",
-        messages: [
-          {
-            role: "user",
-            content: fullPrompt
-          }
-        ],
-        temperature: 0.9,
-        max_tokens: 1024
+        role: "system",
+        content: systemPrompt
       },
       {
-        headers: {
-          'Authorization': `Bearer ${groqApiKey}`,
-          'Content-Type': 'application/json'
-        },
-        timeout: 30000
+        role: "user",
+        content: `User Prompt:
+"${prompt.trim()}"
+
+Analyze the prompt and determine the target company, target role, candidate experience level, and technical domain.
+
+Then generate personalized outreach.
+
+Return ONLY valid JSON.`
       }
-    );
+    ],
+    temperature: 0.7,
+    max_tokens: 2048,
+    response_format: {
+      type: "json_object"
+    }
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${groqApiKey}`,
+      'Content-Type': 'application/json'
+    },
+    timeout: 60000
+  }
+);
 
     // Parse the Groq response
     if (!aiResponse.data.choices || !aiResponse.data.choices[0] || !aiResponse.data.choices[0].message) {
