@@ -114,9 +114,6 @@ The frontend communicates with the Express backend through REST APIs. The backen
 
 ![Dashboard](screenshots/dashboard.png)
 
-### History Page
-
-![History Page](screenshots/history-page.png)
 
 ---
 
